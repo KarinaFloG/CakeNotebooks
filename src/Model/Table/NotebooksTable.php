@@ -15,7 +15,7 @@ class NotebooksTable extends Table
     public function initialize(array $config)
     {
         $this->addBehavior('Timestamp');
-        $this->belongsToMany('Stocks');
+        $this->hasMany('Stocks');
     }
 
     public function beforeSave($event, $entity, $options)

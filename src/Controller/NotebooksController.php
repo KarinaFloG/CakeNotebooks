@@ -1,5 +1,5 @@
 <?php
-// src/Controller/ArticlesController.php
+// src/Controller/NotebooksController.php
 
 namespace App\Controller;
 
@@ -69,7 +69,6 @@ class NotebooksController extends AppController
         // the passed URL path segments in the request.
         $stocks = $this->request->getParam('pass');
 
-        // Use the BookmarksTable to find tagged bookmarks.
         $notebooks = $this->Notebooks->find('stock', [
             'stocks' => $stocks
         ]);

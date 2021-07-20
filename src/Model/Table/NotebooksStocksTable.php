@@ -10,11 +10,11 @@ use Cake\Utility\Text;
 
 use Cake\ORM\Query;
 
-class StocksTable extends Table
+class NotebooksStocksTable extends Table
 {
     public function initialize(array $config)
     {
         $this->addBehavior('Timestamp');
-        $this->hasMany('Notebooks');
+        $this->belongsTo('Notebooks','Stocks');
     }
 }
