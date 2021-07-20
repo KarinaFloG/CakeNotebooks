@@ -42,19 +42,19 @@ class NotebooksTable extends Table
     // para encontrar'tagged') en nuestra acción del controlador.
     public function findStock(Query $query, array $options)
     {
-        $stocks = $this->find()
-            ->select(['id', 'name', 'quantity', 'created']);
+        $notebooks = $this->find()
+            ->select(['type', 'description', 'price', 'created']);
 
-        if (empty($options['notebooks'])) {
-            $stocks
-                ->leftJoinWith('Notebooks')
-                ->where(['Notebooks.description IS' => null]);
+        if (empty($options['stocks'])) {
+            $notebooks
+                ->leftJoinWith('Stocks')
+                ->where(['Stocks.name IS' => null]);
         } else {
-            $stocks
-                ->innerJoinWith('Notebooks')
-                ->where(['Notebooks.description IN ' => $options['notebooks']]);
+            $notebooks
+                ->innerJoinWith('Stocks')
+                ->where(['Stocks.name IN ' => $options['stocks']]);
         }
 
-        return $stocks->group(['Stocks.id']);
+        return $notebooks->group(['Notebooks.id']);
     }
 }
