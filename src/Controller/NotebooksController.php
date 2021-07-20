@@ -63,4 +63,22 @@ class NotebooksController extends AppController
             return $this->redirect(['action' => 'index']);
         }
     }
+    public function stocks()
+    {
+        // The 'pass' key is provided by CakePHP and contains all
+        // the passed URL path segments in the request.
+        $stocks = $this->request->getParam('pass');
+
+        // Use the BookmarksTable to find tagged bookmarks.
+        $notebooks = $this->Notebooks->find('stock', [
+            'stocks' => $stocks
+        ]);
+
+        // Pass variables into the view template context.
+        $this->set([
+            'notebooks' => $notebooks,
+            'stocks' => $stocks
+        ]);
+    }
+
 }

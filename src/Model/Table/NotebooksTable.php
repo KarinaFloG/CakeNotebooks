@@ -8,11 +8,14 @@ use Cake\ORM\Table;
 
 use Cake\Utility\Text;
 
+use Cake\ORM\Query;
+
 class NotebooksTable extends Table
 {
     public function initialize(array $config)
     {
         $this->addBehavior('Timestamp');
+        $this->belongsToMany('Stocks');
     }
 
     public function beforeSave($event, $entity, $options)
@@ -32,5 +35,26 @@ class NotebooksTable extends Table
             ->notEmpty('description');
 
         return $validator;
+    }
+
+    // El argumento $query es una instancia de query.
+    // El array $options contendrá las opciones de 'tags' que pasemos
+    // para encontrar'tagged') en nuestra acción del controlador.
+    public function findStock(Query $query, array $options)
+    {
+        $stocks = $this->find()
+            ->select(['id', 'name', 'quantity', 'created']);
+
+        if (empty($options['notebooks'])) {
+            $stocks
+                ->leftJoinWith('Notebooks')
+                ->where(['Notebooks.description IS' => null]);
+        } else {
+            $stocks
+                ->innerJoinWith('Notebooks')
+                ->where(['Notebooks.description IN ' => $options['notebooks']]);
+        }
+
+        return $stocks->group(['Stocks.id']);
     }
 }

@@ -45,6 +45,14 @@ use Cake\Routing\Route\DashedRoute;
  */
 Router::defaultRouteClass(DashedRoute::class);
 
+Router::scope(
+    '/notebooks',
+    ['controller' => 'Notebooks'],
+    function ($routes) {
+        $routes->connect('/stock/*', ['action' => 'stocks']);
+    }
+);
+
 Router::scope('/', function (RouteBuilder $routes) {
     // Register scoped middleware for in scopes.
     $routes->registerMiddleware('csrf', new CsrfProtectionMiddleware([
@@ -87,6 +95,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      *
      * You can remove these routes once you've connected the
      * routes you want in your application.
+     * DashedRoute::class
      */
     $routes->fallbacks(DashedRoute::class);
 });
