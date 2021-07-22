@@ -63,6 +63,8 @@ class NotebooksController extends AppController
             return $this->redirect(['action' => 'index']);
         }
     }
+
+    
     public function stocks()
     {
         // The 'pass' key is provided by CakePHP and contains all

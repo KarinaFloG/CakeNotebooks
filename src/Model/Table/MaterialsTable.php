@@ -1,5 +1,5 @@
 <?php
-// src/Model/Table/NotebooksTable.php
+// src/Model/Table/MaterialsTable.php
 namespace App\Model\Table;
 
 use Cake\Validation\Validator;
@@ -10,12 +10,12 @@ use Cake\Utility\Text;
 
 use Cake\ORM\Query;
 
-class NotebooksTable extends Table
+class MaterialsTable extends Table
 {
     public function initialize(array $config)
     {
         $this->addBehavior('Timestamp');
-        $this->belongsToMany('Materials', [
+        $this->belongsToMany('Notebooks', [
             'through' => 'MaterialsNotebooks',
         ]);
     }
@@ -33,10 +33,10 @@ class NotebooksTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->notEmpty('type')
+            ->notEmpty('material')
             ->notEmpty('description');
 
         return $validator;
     }
-
 }
+
