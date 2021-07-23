@@ -15,7 +15,7 @@ class NotebooksTable extends Table
     public function initialize(array $config)
     {
         $this->addBehavior('Timestamp');
-        $this->belongsTo('Notebooks');
-        $this->belongsTo('Materials');
+        //$this->belongsTo('Notebooks');
+        //$this->belongsTo('Materials');
     }
 }

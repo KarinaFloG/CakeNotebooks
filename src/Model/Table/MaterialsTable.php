@@ -15,9 +15,9 @@ class MaterialsTable extends Table
     public function initialize(array $config)
     {
         $this->addBehavior('Timestamp');
-        $this->belongsToMany('Notebooks', [
-            'through' => 'MaterialsNotebooks',
-        ]);
+        $this->belongsToMany('Notebooks');
+
+        
     }
 
     public function beforeSave($event, $entity, $options)

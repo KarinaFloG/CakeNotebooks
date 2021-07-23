@@ -3,6 +3,8 @@
 
 namespace App\Controller;
 
+use Cake\ORM\Query;
+
 class NotebooksController extends AppController
 {
     public function initialize()
@@ -20,8 +22,27 @@ class NotebooksController extends AppController
 
     public function view($id)
     {
-        $notebook = $this->Notebooks->get($id);
+        //$notebook = $this->Notebooks->get($id);
+        //$this->set(compact('notebook'));
+
+        $notebook =$this->Notebooks->find('all');
+        $notebook->hydrate(false);        
+        $notebook->join([
+            'n' => [
+                'table' => 'materials_notebooks',
+                'type' => 'INNER',
+                'conditions' => 'n.notebook_id = notebooks.id',
+            ],
+            'm' => [
+                'table' => 'materials',
+                'type' => 'INNER',
+                'conditions' => 'm.id = n.material_id',
+            ]
+        ]);
+        $notebook->select(['m.material','m.description'])->where(['notebooks.id'=> $id]);
+        $notebook->select(['notebooks.type','notebooks.description','notebooks.price'])->where(['notebooks.id'=> $id]);
         $this->set(compact('notebook'));
+        
     }
 
     public function add()

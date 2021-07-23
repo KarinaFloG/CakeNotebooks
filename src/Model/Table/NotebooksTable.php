@@ -16,8 +16,21 @@ class NotebooksTable extends Table
     {
         $this->addBehavior('Timestamp');
         $this->belongsToMany('Materials', [
-            'through' => 'MaterialsNotebooks',
+            'className' => 'Materials',
+            'joinTable' => 'materials_notebooks',
+            'foreignKey' => 'material_id',
+            'bindingKey' => 'notebook_id',
+            'unique' => true,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'finderQuery' => '',
+            'with' => '',
         ]);
+    
+    
     }
 
     public function beforeSave($event, $entity, $options)
