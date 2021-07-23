@@ -31,4 +31,7 @@ foreach ($notebook as $key => $value){
 
 </table>
 
+<<<<<<< HEAD
+>>>>>>> ca57cb4 (Se agrega vista para la relación entre Notebooks y Materials)
+=======
 >>>>>>> ca57cb4 (Se agrega vista para la relación entre Notebooks y Materials)
