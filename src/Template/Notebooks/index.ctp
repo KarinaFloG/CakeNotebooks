@@ -1,10 +1,7 @@
 <!-- File: src/Template/Notebooks/index.ctp -->
 
 <h1>Notebooks</h1>
-<?= $this->Html->link(
-    'Add notebook',
-    ['controller' => 'Notebooks', 'action' => 'add']
-) ?>
+<?= $this->Html->link('Add notebook',['controller' => 'Notebooks', 'action' => 'addEdit']) ?>
 <table>
     <tr>
         <th>Id</th>
@@ -30,7 +27,9 @@
                 ['action' => 'delete', $notebook->id],
                 ['confirm' => 'Are you sure?'])
             ?>
-            <?= $this->Html->link('Edit', ['action' => 'edit', $notebook->id]) ?>
+            <!-- ?= $this->Html->link('Add/Edit', ['action' => 'edit', $notebook->id]) ?>  -->
+            <?= $this->Html->link('Edit', ['action' => 'addEdit', $notebook->id]) ?> 
+            
         </td>
     </tr>
 <?php endforeach; ?>

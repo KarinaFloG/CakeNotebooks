@@ -45,7 +45,8 @@ class NotebooksController extends AppController
         
     }
 
-    public function add()
+    
+    /*** public function add()
     {
         $notebook = $this->Notebooks->newEntity();
         if ($this->request->is('post')) {
@@ -58,7 +59,7 @@ class NotebooksController extends AppController
         }
         $this->set('notebook', $notebook);
     }
-
+    
     public function edit($id = null)
     {
         $notebook = $this->Notebooks->get($id);
@@ -72,6 +73,35 @@ class NotebooksController extends AppController
         }
 
         $this->set('notebook', $notebook);
+    }
+    */
+
+    public function addEdit($id = null)
+    {
+        if(empty($id)){
+            $notebook = $this->Notebooks->newEntity();
+            if ($this->request->is('post')) {
+                $notebook = $this->Notebooks->patchEntity($notebook, $this->request->getData());
+                if ($this->Notebooks->save($notebook)) {
+                    $this->Flash->success(__('Your notebook has been saved.'));
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('Unable to add your notebook.'));
+            }
+            $this->set('notebook', $notebook);
+        }else{
+            $notebook = $this->Notebooks->get($id);
+            if ($this->request->is(['post', 'put'])) {
+                $this->Notebooks->patchEntity($notebook, $this->request->getData());
+                if ($this->Notebooks->save($notebook)) {
+                    $this->Flash->success(__('Your notebook has been update.'));
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('Error updating notebook.'));
+            }
+    
+            $this->set('notebook', $notebook);
+        }
     }
 
     public function delete($id)
