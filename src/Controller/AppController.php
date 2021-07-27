@@ -52,4 +52,12 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
     }
+
+    public function beforeRender(Event $event)
+    {
+        $this->viewBuilder()->setTheme('AdminLTE');
+
+        // Before of CakePHP 3.5
+        $this->viewBuilder()->theme('AdminLTE');
+    }
 }
