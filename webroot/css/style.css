@@ -353,6 +353,7 @@ pre {
 table {
     background: #fff;
     margin-bottom: 1.25rem;
+    margin-left: 2.5rem;
     border: none;
     table-layout: fixed;
     width: 100%;
