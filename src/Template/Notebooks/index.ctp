@@ -14,7 +14,7 @@
       <div class="modal-body-add container">
         
             <?php
-                echo $this->Form->create($notebooks,['id'=>'form-notebook'] );
+                echo $this->Form->create('Notebooks',['id'=>'form-notebook'] );
                 echo $this->Form->input('type');
                 echo $this->Form->input('description', ['rows' => '3']);
                 echo $this->Form->button(__('Save notebook'));
@@ -41,7 +41,7 @@
       <div class="modal-body-add container">
         
             <?php
-                echo $this->Form->create($notebooks,['id'=>'edit-notebook'] );
+                echo $this->Form->create('Notebooks',['id'=>'edit-notebook'] );
                 echo $this->Form->input('type');
                 echo $this->Form->input('description', ['rows' => '3']);
                 echo $this->Form->button(__('Edit notebook'));
@@ -69,7 +69,7 @@
 
 <body>
 <h1>Notebooks</h1>
-<button style="margin: 14px" type="button" id="btn-add-notebook" class="btn btn-info">Add notebook</button>
+<button style="margin: 14px" type="button" id="btn-add-notebook" class="btn btn-info fas fa-plus-square"> Add notebook</button>
 
 <!--
 < ? =

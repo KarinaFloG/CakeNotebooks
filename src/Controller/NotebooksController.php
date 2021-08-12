@@ -45,8 +45,8 @@ class NotebooksController extends AppController
         
     }
 
-    
-    /*** public function add()
+     
+    public function add()
     {
         $notebook = $this->Notebooks->newEntity();
         if ($this->request->is('post')) {
@@ -60,6 +60,7 @@ class NotebooksController extends AppController
         $this->set('notebook', $notebook);
     }
     
+    /***
     public function edit($id = null)
     {
         $notebook = 7$this->Notebooks->get($id);
@@ -78,9 +79,10 @@ class NotebooksController extends AppController
 
     public function addEdit($id = null)
     {
-        if(empty($id)){
+        dump($id);
+        if($id=0){
             $notebook = $this->Notebooks->newEntity();
-            if ($this->request->is('post')) {
+            if ($this->request->is(['post'])) {
                 $notebook = $this->Notebooks->patchEntity($notebook, $this->request->getData());
                 if ($this->Notebooks->save($notebook)) {
                     $this->Flash->success(__('Your notebook has been saved.'));

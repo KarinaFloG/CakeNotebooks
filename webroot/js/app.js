@@ -1,24 +1,22 @@
 $(function(){
     $("#btn-add-notebook").on("click", function(){
-        console.log("Hola crayola a todos");
         $('#addModal').modal('show');
-        
         $("#form-notebook").on("submit",function(){
-            
             var datos = $("#form-notebook").serialize();
-            console.log(datos)            
+            console.log(datos);
+            //alert("awantaaaaa");           
             $.ajax({
-                url: "/notebooks/addEdit",
+                url: "/notebooks/add",
                 data: datos,
                 type: "JSON",
                 method: "POST",
                 success:function(response){
-                    console.log("Ahora si xD");
-                    alert("Se ");
+                    console.log("El registro se guardo con éxito");
+                    //alert(datos)
                     //window.location.href = '/list-students'
                 },
                 error:function(response){
-                    alert("Se cancale");
+                    alert("No se pudo guardar el registro");
                     //window.location.href = '/list-students'
                 }
             });
