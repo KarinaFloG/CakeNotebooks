@@ -62,7 +62,7 @@ class NotebooksController extends AppController
     
     public function edit($id = null)
     {
-        $notebook = $this->Notebooks->get($id);
+        $notebook = 7$this->Notebooks->get($id);
         if ($this->request->is(['post', 'put'])) {
             $this->Notebooks->patchEntity($notebook, $this->request->getData());
             if ($this->Notebooks->save($notebook)) {
@@ -84,9 +84,19 @@ class NotebooksController extends AppController
                 $notebook = $this->Notebooks->patchEntity($notebook, $this->request->getData());
                 if ($this->Notebooks->save($notebook)) {
                     $this->Flash->success(__('Your notebook has been saved.'));
-                    return $this->redirect(['action' => 'index']);
+                    echo json_encode(array(
+                        "status" => 1,
+                        "messsage" => "Se ha creado una libreta"
+                    ));
+                    exit;
+                    //return $this->redirect(['action' => 'index']);
+                    dump($notebook);
                 }
-                $this->Flash->error(__('Unable to add your notebook.'));
+                //$this->Flash->error(__('Unable to add your notebook.'));
+                echo json_encode(array(
+                    "status" => 0,
+                    "messsage" => "No se ha podido crear una libreta"
+                ));
             }
             $this->set('notebook', $notebook);
         }else{
