@@ -10,6 +10,8 @@ use Cake\Utility\Text;
 
 use Cake\ORM\Query;
 
+use Cake\ORM\TableRegistry;
+
 class NotebooksTable extends Table
 {
     public function initialize(array $config)
@@ -52,4 +54,18 @@ class NotebooksTable extends Table
         return $validator;
     }
 
+    public function index(){
+        $notebooksTable = TableRegistry::getTableLocator()->get('Notebooks');
+        $notebooks = $notebooksTable->find('all');
+        return $notebooks;
+    }
+
+    public function deleteNotebook($entity, $options = []){
+        $notebooksTable = TableRegistry::getTableLocator()->get('Notebooks');
+        if($notebooksTable->delete($entity)){
+            return true;
+        }
+        return false;
+    }
+    
 }

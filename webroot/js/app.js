@@ -3,16 +3,15 @@ $(function(){
         $('#addModal').modal('show');
         $("#form-notebook").on("submit",function(){
             var datos = $("#form-notebook").serialize();
-            console.log(datos);
-            //alert("awantaaaaa");           
+            console.log(datos);          
             $.ajax({
-                url: "/notebooks/add",
+                url: "/notebooks/addEdit",
                 data: datos,
                 type: "JSON",
                 method: "POST",
                 success:function(response){
-                    console.log("El registro se guardo con éxito");
-                    //alert(datos)
+                    console.log(datos);
+                    alert("El registro se guardo con éxito");
                     //window.location.href = '/list-students'
                 },
                 error:function(response){

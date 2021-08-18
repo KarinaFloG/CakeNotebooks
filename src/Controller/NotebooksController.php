@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use Cake\ORM\Query;
+use Cake\ORM\Table;
 
 class NotebooksController extends AppController
 {
@@ -17,7 +18,9 @@ class NotebooksController extends AppController
 
     public function index()
     {
-         $this->set('notebooks', $this->Notebooks->find('all'));
+        $notebooks = $this->Notebooks->index();
+        $this->set(compact('notebooks'));
+         //$this->set('notebooks', $this->Notebooks->find('all'));
     }
 
     public function view($id)
@@ -46,6 +49,7 @@ class NotebooksController extends AppController
     }
 
      
+    /***
     public function add()
     {
         $notebook = $this->Notebooks->newEntity();
@@ -60,7 +64,7 @@ class NotebooksController extends AppController
         $this->set('notebook', $notebook);
     }
     
-    /***
+    
     public function edit($id = null)
     {
         $notebook = 7$this->Notebooks->get($id);
@@ -79,8 +83,7 @@ class NotebooksController extends AppController
 
     public function addEdit($id = null)
     {
-        dump($id);
-        if($id=0){
+        if(empty($id)){
             $notebook = $this->Notebooks->newEntity();
             if ($this->request->is(['post'])) {
                 $notebook = $this->Notebooks->patchEntity($notebook, $this->request->getData());
@@ -92,7 +95,7 @@ class NotebooksController extends AppController
                     ));
                     exit;
                     //return $this->redirect(['action' => 'index']);
-                    dump($notebook);
+                    //dump($notebook);
                 }
                 //$this->Flash->error(__('Unable to add your notebook.'));
                 echo json_encode(array(
@@ -116,15 +119,23 @@ class NotebooksController extends AppController
         }
     }
 
+    
     public function delete($id)
     {
-        $this->request->allowMethod(['post', 'delete']);
-
+        //$this->request->allowMethod(['post', 'delete']);
         $notebook = $this->Notebooks->get($id);
-        if ($this->Notebooks->delete($notebook)) {
+        $result = $this->Notebooks->deleteNotebook($notebook,['atomic' => false]);
+        if ($result){
             $this->Flash->success(__('The notebook with id: {0} has been deleted.', h($id)));
             return $this->redirect(['action' => 'index']);
         }
+        $this->Flash->success(__('The notebook with id: {0} has not been deleted.', h($id)));
+        return $this->redirect(['action' => 'index']);
+        
+        //if ($this->Notebooks->delete($notebook)) {
+           // $this->Flash->success(__('The notebook with id: {0} has been deleted.', h($id)));
+            //return $this->redirect(['action' => 'index']);
+        //}
     }
 
     
