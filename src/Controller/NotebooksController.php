@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use Cake\Event\Event;
 use Cake\ORM\Query;
 use Cake\ORM\Table;
 
@@ -11,10 +12,18 @@ class NotebooksController extends AppController
     public function initialize()
     {
         parent::initialize();
-
+        $this->loadComponent('Csrf'); 
         $this->loadComponent('Paginator');
         $this->loadComponent('Flash'); // Include the FlashComponent
+        //$this->loadComponent('Security');
     }
+
+    //Para poder deshabilitar el componente de seguridad CSRF y utilizar AJAX
+    public function beforeFilter(Event $event)
+    {
+        $this->getEventManager()->off($this->Csrf);
+    }
+    
 
     public function index()
     {
@@ -127,9 +136,11 @@ class NotebooksController extends AppController
         $result = $this->Notebooks->deleteNotebook($notebook,['atomic' => false]);
         if ($result){
             $this->Flash->success(__('The notebook with id: {0} has been deleted.', h($id)));
-            return $this->redirect(['action' => 'index']);
+            //return $this->redirect(['action' => 'index']);
+        }else{
+            $this->Flash->success(__('The notebook with id: {0} has not been deleted.', h($id)));
         }
-        $this->Flash->success(__('The notebook with id: {0} has not been deleted.', h($id)));
+        
         return $this->redirect(['action' => 'index']);
         
         //if ($this->Notebooks->delete($notebook)) {

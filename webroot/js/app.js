@@ -56,7 +56,6 @@ $(function(){
         if(confirm("Are you sure want to delete ?")){
             $.ajax({
                 url: "/notebooks/delete/"+id,
-                data: postdata,
                 type: "JSON",
                 method: "post",
                 success:function(response){
