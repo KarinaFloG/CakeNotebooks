@@ -3,33 +3,9 @@
 <link rel="stylesheet" href="/css/index.css" />
 <?php echo $this->Html->script('app.js'); ?>
 
-<div class="container">
-<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New notebook</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body-add container">
-        
-            <?php
-                echo $this->Form->create('Notebooks',['id'=>'form-notebook'] );
-                echo $this->Form->input('type');
-                echo $this->Form->input('description', ['rows' => '3']);
-                echo $this->Form->button(__('Save notebook'));
-                echo $this->Form->end();
-            ?>
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      
-      </div>
-    </div>
-  </div>
-</div>
 
+<!--
+  SIN UTILIZAR ELEMENT-----
 <div class="container">
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -41,13 +17,15 @@
       <div class="modal-body-add container">
         
             <?php
+                /*
                 echo $this->Form->create('Notebooks',['id'=>'edit-notebook'] );
                 echo $this->Form->input('type');
                 echo $this->Form->input('description', ['rows' => '3']);
                 echo $this->Form->button(__('Edit notebook'));
                 echo $this->Form->end();
+                */
             ?>
-        
+          
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -56,9 +34,10 @@
     </div>
   </div>
 </div>
+-->
 
-
-
+<?php echo $this->element('indexModal', ['action'=>'ADD', 'idModal'=>'addModal', 'idForm'=>'form-notebook']); ?>
+<?php echo $this->element('indexModal', ['action'=>'EDIT', 'idModal'=>'editModal', 'idForm'=>'edit-notebook']); ?>
 
 
 
