@@ -68,4 +68,28 @@ class NotebooksTable extends Table
         return false;
     }
     
+    public function addEdit($data = null, $id = null){
+        //Se obtiene todo lo que hay en notebooks
+        console.log($id);
+        if($id != null){
+            $notebooksTable = TableRegistry::getTableLocator()->get('Notebooks'); 
+            $notebook = $notebooksTable->get($id); 
+            $notebook = $notebooksTable->patchEntity($notebook, $data); 
+            if($notebooksTable->save($notebook)){
+                return true;
+            }
+            return false;//sino un false
+        }else{
+            $notebooksTable = TableRegistry::getTableLocator()->get('Notebooks'); 
+            $notebookEntity = $notebooksTable->newEntity();
+            $notebook = $notebooksTable->patchEntity($notebookEntity, $data);
+            if($notebooksTable->save($notebook)){
+                return true; 
+            }
+            return false;
+        }
+        
+        return false;//sino un false
+        
+    }
 }

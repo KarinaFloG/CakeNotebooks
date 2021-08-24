@@ -62,11 +62,6 @@
 
 
 
-
-
-
-
-
 <body>
 <h1>Notebooks</h1>
 <button style="margin: 14px" type="button" id="btn-add-notebook" class="btn btn-info fas fa-plus-square"> Add notebook</button>

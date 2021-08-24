@@ -51,19 +51,24 @@ $(function(){
     $(document).on("click", ".btn-delete-notebook", function(){
         var row = $(this)[0].parentElement.parentElement;
         var id = $(row).attr('notebookId');
-        console.log(id);
+        var datos = $("#edit-notebook input[name='_csrfToken']").attr('value');
+        var token = '_csrfToken='+datos;
+        console.log(datos);
 
         if(confirm("Are you sure want to delete ?")){
             $.ajax({
                 url: "/notebooks/delete/"+id,
+                data: token,
                 type: "JSON",
                 method: "post",
                 success:function(response){
                     alert("Se elimino el registro ");
+                    window.location.href = '/notebooks';
                 },
                 error:function(response){
+                    console.log(datos);
                     alert("No se pudo eliminar");
-                    //window.location.href = '/list-students'
+                    window.location.href = '/notebooks';
                 }
             });
         }

@@ -12,17 +12,17 @@ class NotebooksController extends AppController
     public function initialize()
     {
         parent::initialize();
-        $this->loadComponent('Csrf'); 
+        //$this->loadComponent('Csrf'); 
         $this->loadComponent('Paginator');
         $this->loadComponent('Flash'); // Include the FlashComponent
         //$this->loadComponent('Security');
     }
 
     //Para poder deshabilitar el componente de seguridad CSRF y utilizar AJAX
-    public function beforeFilter(Event $event)
-    {
-        $this->getEventManager()->off($this->Csrf);
-    }
+    //public function beforeFilter(Event $event)
+    //{
+        //$this->getEventManager()->off($this->Csrf);
+    //}
     
 
     public function index()
@@ -58,7 +58,8 @@ class NotebooksController extends AppController
     }
 
      
-    /***
+    /*
+    ---FUNCIONES ADD Y EDIT POR SEPARADO SIN MVC
     public function add()
     {
         $notebook = $this->Notebooks->newEntity();
@@ -93,6 +94,14 @@ class NotebooksController extends AppController
     public function addEdit($id = null)
     {
         if(empty($id)){
+            $result = $this->Notebooks->addEdit($this->request->getData());
+            if($result){
+                $this->Flash->success(__('The notebook with id: {0} has been updated.', h($id)));
+            }else{
+                $this->Flash->error(__('The notebook with id: {0} has not been updated.', h($id)));
+            }
+
+            /* Esto si el modelo y el controlador se quedan mezclados
             $notebook = $this->Notebooks->newEntity();
             if ($this->request->is(['post'])) {
                 $notebook = $this->Notebooks->patchEntity($notebook, $this->request->getData());
@@ -113,8 +122,17 @@ class NotebooksController extends AppController
                 ));
             }
             $this->set('notebook', $notebook);
+            */
         }else{
             $notebook = $this->Notebooks->get($id);
+            $result = $this->Notebooks->addEdit($this->request->getData(),$id);
+            if($result){
+                $this->Flash->success(__('The notebook with id: {0} has been updated.', h($id)));
+            }else{
+                $this->Flash->error(__('The notebook with id: {0} has not been updated.', h($id)));
+            }
+            
+            /* Esto si el modelo y el controlador se quedan mezclados
             if ($this->request->is(['post', 'put'])) {
                 $this->Notebooks->patchEntity($notebook, $this->request->getData());
                 if ($this->Notebooks->save($notebook)) {
@@ -125,7 +143,9 @@ class NotebooksController extends AppController
             }
     
             $this->set('notebook', $notebook);
+            */
         }
+        return $this->redirect(['action' => 'index']);
     }
 
     
@@ -138,7 +158,7 @@ class NotebooksController extends AppController
             $this->Flash->success(__('The notebook with id: {0} has been deleted.', h($id)));
             //return $this->redirect(['action' => 'index']);
         }else{
-            $this->Flash->success(__('The notebook with id: {0} has not been deleted.', h($id)));
+            $this->Flash->error(__('The notebook with id: {0} has not been deleted.', h($id)));
         }
         
         return $this->redirect(['action' => 'index']);
