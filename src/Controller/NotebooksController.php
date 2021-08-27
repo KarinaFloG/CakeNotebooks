@@ -96,7 +96,7 @@ class NotebooksController extends AppController
         if(empty($id)){
             $result = $this->Notebooks->addEdit($this->request->getData());
             if($result){
-                $this->Flash->success(__('The notebook with id: {0} has been updated.', h($id)));
+               $this->Flash->success(__('The notebook with id: {0} has been updated.', h($id)));
             }else{
                 $this->Flash->error(__('The notebook with id: {0} has not been updated.', h($id)));
             }
