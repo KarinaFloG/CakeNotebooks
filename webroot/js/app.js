@@ -14,7 +14,7 @@ $(function(){
                 method: "POST",
                 success:function(response){
                     console.log(datos);
-                    var success = new PNotify({
+                    new PNotify({
                         title: 'Add notebook',
                         text: 'El registro se guardo con éxito',
                         type: 'success'
@@ -23,10 +23,10 @@ $(function(){
                     //window.location.href = '/list-students'
                 },
                 error:function(response){
-                    var error = new PNotify({
+                    var erro = new PNotify({
                         title: 'Add notebook',
                         text: 'El registro se guardo con éxito',
-                        tipe: 'error'
+                        type: 'error'
                     }); 
                     //alert("No se pudo guardar el registro");
                     //window.location.href = '/list-students'
