@@ -1,7 +1,4 @@
 $(function(){
-    $("#click").on("click", function(){
-        
-    });
     $("#btn-add-notebook").on("click", function(){
         $('#addModal').modal('show');
         $("#form-notebook").on("submit",function(){
@@ -37,7 +34,9 @@ $(function(){
 
     $(document).on("click", ".btn-edit-notebook", function(){
         var row = $(this)[0].parentElement.parentElement;
-        var id = $(row).attr('notebookId');
+        //Para obtener el id del registro que se desea eliminar a través del contenido de la fila
+        var id = $(this).parents("tr").find("td")[1].innerHTML;
+        //var id = $(row).attr('notebookId'); Es necesario para editar registro con el index sin AJAX
         console.log(id);
 
         $('#editModal').modal('show');
@@ -73,11 +72,14 @@ $(function(){
 
     $(document).on("click", ".btn-delete-notebook", function(){
         var row = $(this)[0].parentElement.parentElement;
-        var id = $(row).attr('notebookId');
+        //Para obtener el id del registro que se desea eliminar a través del contenido de la fila
+        var id = $(this).parents("tr").find("td")[1].innerHTML;
+        //var id = $(row).attr('notebookId'); Es necesario para eliminar registro con el index sin AJAX
         var datos = $("#edit-notebook input[name='_csrfToken']").attr('value');
         var token = '_csrfToken='+datos;
         console.log(datos);
-
+        console.log(typeof id);
+        //console.log(id); //para saber el tipo de dato de la variable
         if(confirm("Are you sure want to delete ?")){
             $.ajax({
                 url: "/notebooks/delete/"+id,
@@ -104,5 +106,23 @@ $(function(){
                 }
             });
         }
+    });
+
+    $(document).ready(function(){
+        $.ajax({
+            url:'/notebooks/listNotebooks',
+            success:function(response){
+                let template = '';
+                $('#tableListNotebooks').html(response);
+            },
+            error:function(response){
+                var error = new PNotify({
+                    title: 'ERROR',
+                    text: 'No se ha podido listar el contenido',
+                    type: 'error'
+                });
+            }
+
+        });
     });
 });

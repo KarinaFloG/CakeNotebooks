@@ -1,4 +1,12 @@
 <?php
+/*
+Autor: Karina Flores G. (Github: @KarinaFloG)
+Descripción: Modelo del MVC para el sistema de registro de libretas con CRUD completo haciendo uso de AJAX.
+Fecha: 
+*/
+
+
+
 // src/Model/Table/NotebooksTable.php
 namespace App\Model\Table;
 

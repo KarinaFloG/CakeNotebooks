@@ -1,3 +1,10 @@
+<!--
+Autor: Karina Flores G. (Github: @KarinaFloG)
+Descripción: Plantilla HTML del index del sistio para la gestión del CRUD con AJAX.
+Fecha: 
+-->
+
+
 <!-- File: src/Template/Notebooks/index.ctp -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/index.css" />
@@ -44,7 +51,6 @@
 <body>
 <h1>Notebooks</h1>
 <button style="margin: 14px" type="button" id="btn-add-notebook" class="btn btn-info fas fa-plus-square"> Add notebook</button>
-<button style="margin: 14px" type="button" id="click" class="btn btn-info fas fa-plus-square"> Tollis</button>
 
 <!--
 < ? =
@@ -64,14 +70,21 @@
         <th>Created</th>
         
     </tr>
-
+    <tbody id="tableListNotebooks">
+        
+    </tbody>
 <!-- Aquí es donde iteramos nuestro objeto de consulta $articles, mostrando en pantalla la información del artículo -->
 
-<?php foreach ($notebooks as $notebook): ?>
-    <tr notebookId="<?=$notebook->id?>">
+<!-- ESTO ES NECESARIO PARA QUE HAGA EL LISTADO SIN AJAX
+<1php 
+    //foreach ($notebooks as $notebook): 
+?> 
+
+    <tr notebookId="<1= //$notebook->id?>">
         <td>
             <button style="margin: 8px" type="button" class="btn btn-danger fas fa-trash btn-delete-notebook">
-            </button>
+            </button> 
+-->
             <!--?= 
             $this->Form->postLink( 
                 '',
@@ -80,10 +93,10 @@
             )?>
             -->
             
-
+<!--     ESTO ES NECESARIO PARA QUE HAGA EL LISTADO SIN AJAX
             <button type="button" class="btn btn-warning fas fa-edit btn-edit-notebook">
             </button>
-        
+-->  
             <!--
             ?=
             $this->Html->link(
@@ -98,18 +111,24 @@
                 ['confirm' => 'Are you sure?'])
                 
             ?>  -->
-            
+ <!-- ESTO ES NECESARIO PARA QUE HAGA EL LISTADO SIN AJAX          
         </td>
-        <td><?= $notebook->id ?></td> 
+        <td><1= //$notebook->id ?></td> 
         <td>
-            <?= $this->Html->link($notebook->type, ['action' => 'view', $notebook->id]) ?>
+            <1= //$this->Html->link($notebook->type, ['action' => 'view', $notebook->id]) ?>
         </td>
         <td>
-            <?= $notebook->created->format(DATE_RFC850) ?>
+            <1= //$notebook->created->format(DATE_RFC850) ?>
         </td>
         
     </tr>
-<?php endforeach; ?>
+    php endforeach; ?>   ***ABRIR ESTA ETIQUETA
+
+
+    1 = agregar ? para abrir etiqueta
+-->
+
+
 
 </table>
 </div>

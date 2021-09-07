@@ -1,4 +1,12 @@
 <?php
+/*
+Autor: Karina Flores G. (Github: @KarinaFloG)
+Descripción: Controlador de sistema de registro de libretas con CRUD completo.
+Fecha: 
+*/
+
+
+
 // src/Controller/NotebooksController.php
 
 namespace App\Controller;
@@ -18,18 +26,35 @@ class NotebooksController extends AppController
         //$this->loadComponent('Security');
     }
 
-    //Para poder deshabilitar el componente de seguridad CSRF y utilizar AJAX
-    //public function beforeFilter(Event $event)
-    //{
-        //$this->getEventManager()->off($this->Csrf);
-    //}
-    
-
     public function index()
     {
         $notebooks = $this->Notebooks->index();
-        $this->set(compact('notebooks'));
+        //$this->set(compact('notebooks')); LINEA NECESARIA PARA REALIZAR EL LISTADO SIN AJAX
          //$this->set('notebooks', $this->Notebooks->find('all'));
+    }
+
+    //PARA MOSTRAR LA LISTA DE NOTEBOOKS EN EL INDEX HACIENDO USO DE AJAX
+    public function listNotebooks(){
+        $notebooks = $this->Notebooks->index();
+        $templateTable = '';
+        foreach ($notebooks as $notebook) {
+            $templateTable = '';
+            $templateTable .= '   
+            <tr>
+            <td>
+                <button style="margin: 8px" type="button" class="btn btn-danger fas fa-trash btn-delete-notebook">
+                </button> 
+                <button type="button" class="btn btn-warning fas fa-edit btn-edit-notebook">
+                </button>
+            </td>
+            <td class="idNotebook">'.$notebook["id"].'</td>
+            <td>'.$notebook["type"].'</td>
+            <td>'.$notebook["created"].'</td>';
+
+            $templateTable .='<\tr>';
+            echo $templateTable;
+        }
+        exit;
     }
 
     public function view($id)
@@ -145,7 +170,7 @@ class NotebooksController extends AppController
             $this->set('notebook', $notebook);
             */
         }
-        return $this->redirect(['action' => 'index']);
+        //return $this->redirect(['action' => 'index']);
     }
 
     

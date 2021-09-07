@@ -14,13 +14,13 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <?php echo $this->Html->css('Chart.min'); ?>
     <?php echo $this->Html->css('icheck-bootstrap.min'); ?>
-    <?php echo $this->Html->css('qvmap.min'); ?>
+    <?php echo $this->Html->css('jqvmap.min'); ?>
     <?php echo $this->Html->css('OverlayScrollbars.min'); ?>
     <?php echo $this->Html->css('daterangepicker'); ?>
     <?php echo $this->Html->css('summernote-bs4'); ?>
-    <?php echo $this->Html->css('select2.min'); ?>
+    <?php echo $this->Html->css('select2.min.css'); ?>
     <?php echo $this->Html->css('select2-bootstrap4.min'); ?>
-    <?php echo $this->Html->css('adminlte.min'); ?>
+    <?php echo $this->Html->css('adminlte.min.css'); ?>
     <?php echo $this->Html->script('jquery-3-6-0.js'); ?>
     <?php echo $this->Html->script('pnotify.js'); ?>
     <?php echo $this->Html->script('pnotify.js'); ?>
@@ -74,7 +74,7 @@
     <!-- jQuery -->
     <?php echo $this->Html->script('jquery.min'); ?>
     <!-- Bootstrap 4 -->
-    <?php echo $this->Html->script('bootstrap.bundle.min'); ?>
+    <?php echo $this->Html->script('bootstrap-bundle.min'); ?>
     <!-- overlayScrollbars -->
     <?php echo $this->Html->script('jquery.overlayScrollbars.min'); ?>
     <!-- AdminLTE App -->
