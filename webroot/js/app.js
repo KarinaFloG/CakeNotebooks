@@ -1,3 +1,21 @@
+function listIndex(){
+    $.ajax({
+        url:'/notebooks/listNotebooks',
+        success:function(response){
+            let template = '';
+            $('#tableListNotebooks').html(response);
+        },
+        error:function(response){
+            var error = new PNotify({
+                title: 'ERROR',
+                text: 'No se ha podido listar el contenido',
+                type: 'error'
+            });
+        }
+
+    });
+};
+
 $(function(){
     $("#btn-add-notebook").on("click", function(){
         $('#addModal').modal('show');
@@ -18,13 +36,16 @@ $(function(){
                     }); 
                     //alert("El registro se guardo con éxito");
                     //window.location.href = '/list-students'
+                    $('#addModal').modal('hide');
+                    listIndex();
                 },
                 error:function(response){
-                    var erro = new PNotify({
+                    var error = new PNotify({
                         title: 'Add notebook',
                         text: 'El registro se guardo con éxito',
                         type: 'error'
                     }); 
+                    listIndex();
                     //alert("No se pudo guardar el registro");
                     //window.location.href = '/list-students'
                 }
@@ -56,13 +77,16 @@ $(function(){
                         text: 'Se modifico correctamente',
                         type: 'success'
                     }); 
+                    $('#editModal').modal('hide');
+                    listIndex();
                 },
                 error:function(response){
-                    var success = new PNotify({
+                    var error = new PNotify({
                         title: 'Edit notebook',
                         text: 'No se pudo modificar',
                         type: 'error'
                     }); 
+                    listIndex();
                     //alert("No se pudo modificar");
                     //window.location.href = '/list-students'
                 }
@@ -91,8 +115,9 @@ $(function(){
                         title: 'Delete notebook',
                         text: 'Se ha eliminado',
                         type: 'success'
-                    }); 
-                    window.location.href = '/notebooks';
+                    });
+                    listIndex(); 
+                   // window.location.href = '/notebooks';
                 },
                 error:function(response){
                     console.log(datos);
@@ -102,27 +127,14 @@ $(function(){
                         type: 'error'
                     });
                     //alert("No se pudo eliminar");
-                    window.location.href = '/notebooks';
+                    listIndex();
+                   // window.location.href = '/notebooks';
                 }
             });
         }
     });
 
     $(document).ready(function(){
-        $.ajax({
-            url:'/notebooks/listNotebooks',
-            success:function(response){
-                let template = '';
-                $('#tableListNotebooks').html(response);
-            },
-            error:function(response){
-                var error = new PNotify({
-                    title: 'ERROR',
-                    text: 'No se ha podido listar el contenido',
-                    type: 'error'
-                });
-            }
-
-        });
+        listIndex();
     });
 });
