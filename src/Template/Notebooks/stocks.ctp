@@ -4,11 +4,11 @@
 </h1>
 
 <section>
-<?php foreach ($notebooks as $notebook): ?>
+<?php foreach ($stocks as $stock): ?>
     <article>
         <!-- Use the HtmlHelper to create a link -->
-        <h4><?= $this->Html->link($notebook->type, $notebook->description) ?></h4>
-        <small><?= h($notebook->price) ?></small>
+        <h4><?= $this->Html->link($stock->name, $stock->quantity) ?></h4>
+        <small><?= h($stock->name) ?></small>
 
         <!-- Use the TextHelper to format text -->
         

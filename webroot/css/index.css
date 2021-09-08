@@ -1,0 +1,22 @@
+body{
+    background-color: coral;
+}
+
+button{
+    padding: 4px;
+}
+
+table{
+    background-color: #20c997;
+}
+
+.fas{
+    color: darkgreen;
+}
+
+h1{
+    margin-left: 12px;
+    padding-top: 8px;
+    font-family: fantasy;
+    color: midnightblue;
+}

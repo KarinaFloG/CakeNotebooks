@@ -1,5 +1,4 @@
 <h1>Edit Notebook</h1>
-<h1>Edit Notebook</h1>
 <?php
     echo $this->Form->create($notebook);
     echo $this->Form->input('type');
