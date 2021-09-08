@@ -34,8 +34,6 @@ $(function(){
                         text: 'El registro se guardo con éxito',
                         type: 'success'
                     }); 
-                    //alert("El registro se guardo con éxito");
-                    //window.location.href = '/list-students'
                     $('#addModal').modal('hide');
                     listIndex();
                 },
@@ -46,8 +44,6 @@ $(function(){
                         type: 'error'
                     }); 
                     listIndex();
-                    //alert("No se pudo guardar el registro");
-                    //window.location.href = '/list-students'
                 }
             });
         });
@@ -57,7 +53,6 @@ $(function(){
         var row = $(this)[0].parentElement.parentElement;
         //Para obtener el id del registro que se desea eliminar a través del contenido de la fila
         var id = $(this).parents("tr").find("td")[1].innerHTML;
-        //var id = $(row).attr('notebookId'); Es necesario para editar registro con el index sin AJAX
         console.log(id);
 
         $('#editModal').modal('show');
@@ -71,7 +66,6 @@ $(function(){
                 type: "JSON",
                 method: "POST",
                 success:function(response){
-                    //alert("Se modifico correctamente ");
                     PNotify({
                         title: 'Edit notebook',
                         text: 'Se modifico correctamente',
@@ -87,8 +81,6 @@ $(function(){
                         type: 'error'
                     }); 
                     listIndex();
-                    //alert("No se pudo modificar");
-                    //window.location.href = '/list-students'
                 }
             });
         });
@@ -98,12 +90,10 @@ $(function(){
         var row = $(this)[0].parentElement.parentElement;
         //Para obtener el id del registro que se desea eliminar a través del contenido de la fila
         var id = $(this).parents("tr").find("td")[1].innerHTML;
-        //var id = $(row).attr('notebookId'); Es necesario para eliminar registro con el index sin AJAX
         var datos = $("#edit-notebook input[name='_csrfToken']").attr('value');
         var token = '_csrfToken='+datos;
         console.log(datos);
         console.log(typeof id);
-        //console.log(id); //para saber el tipo de dato de la variable
         if(confirm("Are you sure want to delete ?")){
             $.ajax({
                 url: "/notebooks/delete/"+id,
@@ -117,7 +107,6 @@ $(function(){
                         type: 'success'
                     });
                     listIndex(); 
-                   // window.location.href = '/notebooks';
                 },
                 error:function(response){
                     console.log(datos);
@@ -126,9 +115,8 @@ $(function(){
                         text: 'No se ha podido eliminar',
                         type: 'error'
                     });
-                    //alert("No se pudo eliminar");
                     listIndex();
-                   // window.location.href = '/notebooks';
+
                 }
             });
         }

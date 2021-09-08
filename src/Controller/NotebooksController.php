@@ -5,10 +5,6 @@ Descripción: Controlador de sistema de registro de libretas con CRUD completo.
 Fecha: 
 */
 
-
-
-// src/Controller/NotebooksController.php
-
 namespace App\Controller;
 
 use Cake\Event\Event;
@@ -20,17 +16,13 @@ class NotebooksController extends AppController
     public function initialize()
     {
         parent::initialize();
-        //$this->loadComponent('Csrf'); 
         $this->loadComponent('Paginator');
         $this->loadComponent('Flash'); // Include the FlashComponent
-        //$this->loadComponent('Security');
     }
 
     public function index()
     {
         $notebooks = $this->Notebooks->index();
-        //$this->set(compact('notebooks')); LINEA NECESARIA PARA REALIZAR EL LISTADO SIN AJAX
-         //$this->set('notebooks', $this->Notebooks->find('all'));
     }
 
     //PARA MOSTRAR LA LISTA DE NOTEBOOKS EN EL INDEX HACIENDO USO DE AJAX
@@ -59,9 +51,6 @@ class NotebooksController extends AppController
 
     public function view($id)
     {
-        //$notebook = $this->Notebooks->get($id);
-        //$this->set(compact('notebook'));
-
         $notebook =$this->Notebooks->find('all');
         $notebook->hydrate(false);        
         $notebook->join([
@@ -83,38 +72,6 @@ class NotebooksController extends AppController
     }
 
      
-    /*
-    ---FUNCIONES ADD Y EDIT POR SEPARADO SIN MVC
-    public function add()
-    {
-        $notebook = $this->Notebooks->newEntity();
-        if ($this->request->is('post')) {
-            $notebook = $this->Notebooks->patchEntity($notebook, $this->request->getData());
-            if ($this->Notebooks->save($notebook)) {
-                $this->Flash->success(__('Your notebook has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('Unable to add your notebook.'));
-        }
-        $this->set('notebook', $notebook);
-    }
-    
-    
-    public function edit($id = null)
-    {
-        $notebook = 7$this->Notebooks->get($id);
-        if ($this->request->is(['post', 'put'])) {
-            $this->Notebooks->patchEntity($notebook, $this->request->getData());
-            if ($this->Notebooks->save($notebook)) {
-                $this->Flash->success(__('Your notebook has been update.'));
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('Error updating notebook.'));
-        }
-
-        $this->set('notebook', $notebook);
-    }
-    */
 
     public function addEdit($id = null)
     {
@@ -125,29 +82,6 @@ class NotebooksController extends AppController
             }else{
                 $this->Flash->error(__('The notebook with id: {0} has not been updated.', h($id)));
             }
-
-            /* Esto si el modelo y el controlador se quedan mezclados
-            $notebook = $this->Notebooks->newEntity();
-            if ($this->request->is(['post'])) {
-                $notebook = $this->Notebooks->patchEntity($notebook, $this->request->getData());
-                if ($this->Notebooks->save($notebook)) {
-                    $this->Flash->success(__('Your notebook has been saved.'));
-                    echo json_encode(array(
-                        "status" => 1,
-                        "messsage" => "Se ha creado una libreta"
-                    ));
-                    exit;
-                    //return $this->redirect(['action' => 'index']);
-                    //dump($notebook);
-                }
-                //$this->Flash->error(__('Unable to add your notebook.'));
-                echo json_encode(array(
-                    "status" => 0,
-                    "messsage" => "No se ha podido crear una libreta"
-                ));
-            }
-            $this->set('notebook', $notebook);
-            */
         }else{
             $notebook = $this->Notebooks->get($id);
             $result = $this->Notebooks->addEdit($this->request->getData(),$id);
@@ -156,42 +90,21 @@ class NotebooksController extends AppController
             }else{
                 $this->Flash->error(__('The notebook with id: {0} has not been updated.', h($id)));
             }
-            
-            /* Esto si el modelo y el controlador se quedan mezclados
-            if ($this->request->is(['post', 'put'])) {
-                $this->Notebooks->patchEntity($notebook, $this->request->getData());
-                if ($this->Notebooks->save($notebook)) {
-                    $this->Flash->success(__('Your notebook has been update.'));
-                    return $this->redirect(['action' => 'index']);
-                }
-                $this->Flash->error(__('Error updating notebook.'));
-            }
-    
-            $this->set('notebook', $notebook);
-            */
         }
-        //return $this->redirect(['action' => 'index']);
     }
 
     
     public function delete($id)
     {
-        //$this->request->allowMethod(['post', 'delete']);
         $notebook = $this->Notebooks->get($id);
         $result = $this->Notebooks->deleteNotebook($notebook,['atomic' => false]);
         if ($result){
             $this->Flash->success(__('The notebook with id: {0} has been deleted.', h($id)));
-            //return $this->redirect(['action' => 'index']);
         }else{
             $this->Flash->error(__('The notebook with id: {0} has not been deleted.', h($id)));
         }
         
         return $this->redirect(['action' => 'index']);
-        
-        //if ($this->Notebooks->delete($notebook)) {
-           // $this->Flash->success(__('The notebook with id: {0} has been deleted.', h($id)));
-            //return $this->redirect(['action' => 'index']);
-        //}
     }
 
     

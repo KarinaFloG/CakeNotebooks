@@ -5,9 +5,6 @@ Descripción: Modelo del MVC para el sistema de registro de libretas con CRUD co
 Fecha: 
 */
 
-
-
-// src/Model/Table/NotebooksTable.php
 namespace App\Model\Table;
 
 use Cake\Validation\Validator;
@@ -47,7 +44,6 @@ class NotebooksTable extends Table
     {
         if ($entity->isNew() && !$entity->slug) {
             $sluggedType = Text::slug($entity->type);
-            // trim slug to maximum length defined in schema
             $entity->slug = substr($sluggedType, 0, 191);
         }
     }
