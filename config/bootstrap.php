@@ -82,8 +82,6 @@ try {
  * shared configuration.
  */
 //Configure::load('app_local', 'default');
-//$this->addPlugin('AdminLTE', ['bootstrap' => true, 'routes' => true]);
-//Configure::load('adminlte', 'default');
 /*
  * When debug = true the metadata cache should only last
  * for a short time.

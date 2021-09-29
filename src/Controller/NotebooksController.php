@@ -20,33 +20,15 @@ class NotebooksController extends AppController
         $this->loadComponent('Flash'); // Include the FlashComponent
     }
 
-    public function index()
-    {
-        $notebooks = $this->Notebooks->index();
+    //PARA MOSTRAR LA LISTA DE NOTEBOOKS EN EL INDEX HACIENDO USO DE AJAX
+    public function list(){
+        $notebooks = $this->Notebooks->listNotebooks();
+        $this->set(compact('notebooks'));
     }
 
-    //PARA MOSTRAR LA LISTA DE NOTEBOOKS EN EL INDEX HACIENDO USO DE AJAX
-    public function listNotebooks(){
-        $notebooks = $this->Notebooks->index();
-        $templateTable = '';
-        foreach ($notebooks as $notebook) {
-            $templateTable = '';
-            $templateTable .= '   
-            <tr>
-            <td>
-                <button style="margin: 8px" type="button" class="btn btn-danger fas fa-trash btn-delete-notebook">
-                </button> 
-                <button type="button" class="btn btn-warning fas fa-edit btn-edit-notebook">
-                </button>
-            </td>
-            <td class="idNotebook">'.$notebook["id"].'</td>
-            <td>'.$notebook["type"].'</td>
-            <td>'.$notebook["created"].'</td>';
-
-            $templateTable .='<\tr>';
-            echo $templateTable;
-        }
-        exit;
+    public function index()
+    {
+        
     }
 
     public function view($id)
@@ -78,17 +60,21 @@ class NotebooksController extends AppController
         if(empty($id)){
             $result = $this->Notebooks->addEdit($this->request->getData());
             if($result){
-               $this->Flash->success(__('The notebook with id: {0} has been updated.', h($id)));
+                $bool = true;
+               //$this->Flash->success(__('The notebook with id: {0} has been updated.', h($id)));
             }else{
-                $this->Flash->error(__('The notebook with id: {0} has not been updated.', h($id)));
+                $bool= false;
+                //$this->Flash->error(__('The notebook with id: {0} has not been updated.', h($id)));
             }
         }else{
             $notebook = $this->Notebooks->get($id);
             $result = $this->Notebooks->addEdit($this->request->getData(),$id);
             if($result){
-                $this->Flash->success(__('The notebook with id: {0} has been updated.', h($id)));
+                $bool = true;
+                //$this->Flash->success(__('The notebook with id: {0} has been updated.', h($id)));
             }else{
-                $this->Flash->error(__('The notebook with id: {0} has not been updated.', h($id)));
+                $bool = false;
+                //$this->Flash->error(__('The notebook with id: {0} has not been updated.', h($id)));
             }
         }
     }
@@ -99,9 +85,11 @@ class NotebooksController extends AppController
         $notebook = $this->Notebooks->get($id);
         $result = $this->Notebooks->deleteNotebook($notebook,['atomic' => false]);
         if ($result){
-            $this->Flash->success(__('The notebook with id: {0} has been deleted.', h($id)));
+            $bool = true;
+           // $this->Flash->success(__('The notebook with id: {0} has been deleted.', h($id)));
         }else{
-            $this->Flash->error(__('The notebook with id: {0} has not been deleted.', h($id)));
+            $bool = false;
+            //$this->Flash->error(__('The notebook with id: {0} has not been deleted.', h($id)));
         }
         
         return $this->redirect(['action' => 'index']);

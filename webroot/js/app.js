@@ -1,8 +1,8 @@
 function listIndex(){
     $.ajax({
-        url:'/notebooks/listNotebooks',
+        url:'/notebooks/list',
         success:function(response){
-            let template = '';
+            //let template = '';
             $('#tableListNotebooks').html(response);
         },
         error:function(response){
@@ -12,13 +12,20 @@ function listIndex(){
                 type: 'error'
             });
         }
-
     });
 };
 
-$(function(){
+
+$(document).ready(function(){
+    listIndex();  
     $("#btn-add-notebook").on("click", function(){
         $('#addModal').modal('show');
+        $('.btnclose').click(function(){
+            $('#addModal').modal('hide');
+        });
+        $('.closebtn').click(function(){
+            $('#addModal').modal('hide');
+        });
         $("#form-notebook").on("submit",function(){
             var datos = $("#form-notebook").serialize();
             console.log(datos);          
@@ -43,6 +50,7 @@ $(function(){
                         text: 'El registro se guardo con éxito',
                         type: 'error'
                     }); 
+                    $('#addModal').modal('hide');
                     listIndex();
                 }
             });
@@ -56,6 +64,14 @@ $(function(){
         console.log(id);
 
         $('#editModal').modal('show');
+
+        $('.btnclose').click(function(){
+            $('#editModal').modal('hide');
+        });
+
+        $('.closebtn').click(function(){
+            $('#editModal').modal('hide');
+        });
         $("#edit-notebook").on("submit",function(){
             var datos = $("#edit-notebook").serialize();
             console.log(datos);
@@ -80,6 +96,7 @@ $(function(){
                         text: 'No se pudo modificar',
                         type: 'error'
                     }); 
+                    $('#editModal').modal('hide');
                     listIndex();
                 }
             });
@@ -122,7 +139,6 @@ $(function(){
         }
     });
 
-    $(document).ready(function(){
-        listIndex();
-    });
+    
 });
+

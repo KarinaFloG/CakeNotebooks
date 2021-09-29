@@ -9,7 +9,6 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Font Awesome -->
-    <?php echo $this->Html->css('AdminLTE./plugins/fontawesome-free/css/all.min'); ?>
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <?php echo $this->Html->css('Chart.min'); ?>
@@ -120,4 +119,3 @@
     <?php echo $this->fetch('scriptBottom'); ?>
 </body>
 </html>
-   ui

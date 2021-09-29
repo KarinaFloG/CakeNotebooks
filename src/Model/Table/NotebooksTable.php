@@ -64,6 +64,12 @@ class NotebooksTable extends Table
         return $notebooks;
     }
 
+    public function listNotebooks(){
+        $notebooksTable = TableRegistry::getTableLocator()->get('Notebooks');
+        $notebooks = $notebooksTable->find('all');
+        return $notebooks;
+    }
+
     public function deleteNotebook($entity, $options = []){
         $notebooksTable = TableRegistry::getTableLocator()->get('Notebooks');
         if($notebooksTable->delete($entity)){
