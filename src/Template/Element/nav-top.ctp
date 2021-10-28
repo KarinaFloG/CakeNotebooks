@@ -3,7 +3,7 @@
         <div class="container">
             <a href="/pages/index3" class="navbar-brand">
                 <?=$this->Html->image('AdminLTELogo.png', ['class' => 'brand-image img-circle elevation-3', 'style' => "opacity: .8", 'alt' => 'AdminLTE Logo'])?>
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+                <span class="brand-text font-weight-light">Notebooks</span>
             </a>
 
             <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

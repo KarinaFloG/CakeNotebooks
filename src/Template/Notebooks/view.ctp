@@ -13,6 +13,7 @@ foreach ($notebook as $key => $value){
         <td>Material</td>
         <td>Description</td>
 </tr>
+
 <?php foreach ($notebook as $key => $value): ?>
     
     <tr>

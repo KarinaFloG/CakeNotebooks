@@ -2,7 +2,7 @@
 
     <a href="/pages/index" class="brand-link">
         <?=$this->Html->image('AdminLTELogo.png', ['class' => 'brand-image img-circle elevation-3', 'style' => "opacity: .8", 'alt' => 'AdminLTE Logo'])?>
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">Notebooks</span>
     </a>
 
     <div class="sidebar">

@@ -8,6 +8,7 @@ button{
 
 table{
     background-color: #20c997;
+    width: 60%;
 }
 
 .fas{
@@ -19,4 +20,17 @@ h1{
     padding-top: 8px;
     font-family: fantasy;
     color: midnightblue;
+}
+
+table tr:nth-child(1) {
+	color: #fff;
+	background-color:darkseagreen;
+}
+
+table .table-striped{
+    width: 60%;
+}   
+
+p{
+    border:290px;
 }

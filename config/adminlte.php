@@ -1,9 +1,9 @@
 <?php
 return [
     'Theme' => [
-        'title' => 'AdminLTE',
+        'title' => 'Notebooks',
         'logo' => [
-            'mini' => '<b>A</b>LT',
+            'mini' => '<b>N</b>LT',
             'large' => '<b>Admin</b>LTE'
         ],
         'login' => [
